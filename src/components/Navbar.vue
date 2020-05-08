@@ -1,7 +1,6 @@
 <template>
   <div>
     <b-navbar type="dark" variant="dark">
-      
       <b-navbar-brand to="./home">旧岛</b-navbar-brand>
 
       <b-collapse id="nav-collapse" is-nav>
@@ -15,23 +14,29 @@
           <b-nav-item-dropdown right>
             <!-- Using 'button-content' slot -->
             <template v-slot:button-content>
-              <span>用户</span>
-              <!-- <b-avatar variant="primary" text="用户"></b-avatar> -->
+              <b-avatar variant="primary" :text="name" v-if="isLogin"></b-avatar>
+              <span v-else>用户</span>
             </template>
-            <b-dropdown-item href="#">登录</b-dropdown-item>
-            <!-- <b-dropdown-item href="#">个人中心</b-dropdown-item>
-            <b-dropdown-item href="#">退出</b-dropdown-item>    -->
+            <div v-if="isLogin">
+              <b-dropdown-item href="#">个人中心</b-dropdown-item>
+              <b-dropdown-item href="#">退出</b-dropdown-item>
+            </div>
+            <b-dropdown-item href="#" v-else>登录</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
-
     </b-navbar>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "Navbar",
+  computed: {
+    ...mapGetters(["isLogin", "name"])
+  },
   data() {
     return {
       activeStatus: [true, false, false]
@@ -41,17 +46,15 @@ export default {
     $route: {
       handler: function(route) {
         const { i } = route.meta;
-        this.handleRouteChange(i);
+        this.activeStatus = this.activeStatus.map((_, index) =>
+          index == i ? true : false
+        );
       },
       immediate: true
     }
   },
   methods: {
-    handleRouteChange(i) {
-      this.activeStatus = this.activeStatus.map((_, index) =>
-        index == i ? true : false
-      );
-    }
+    handleRouteChange(i) {}
   }
 };
 </script>
