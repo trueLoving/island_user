@@ -14,16 +14,25 @@ const routes = [
       {
         path: 'home',
         name: 'Home',
+        meta:{
+          i:0
+        },
         component: () => import('@/views/Home.vue')
       },
       {
         path: 'exams',
         name: 'Exams',
+        meta:{
+          i:1
+        },
         component: () => import('@/views/Exams.vue')
       },
       {
         path: 'practices',
         name: 'Practices',
+        meta:{
+          i:2
+        },
         component: () => import('@/views/Practices.vue')
       }
     ]
