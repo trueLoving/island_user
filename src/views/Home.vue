@@ -1,6 +1,6 @@
 <template>
-  <div class="home">
-    Hello Home
+  <div class="home-container">
+    <div class="home-title">一款便捷的在线考试刷题系统</div>
   </div>
 </template>
 
@@ -9,3 +9,14 @@ export default {
   name: "Home"
 };
 </script>
+
+<style scoped>
+.home-title{
+  color: #707070;
+  font-size: 45px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+</style>
