@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- navbar组件 -->
     <b-navbar type="dark" variant="dark">
       <b-navbar-brand to="./home">旧岛</b-navbar-brand>
 
@@ -21,19 +22,33 @@
               <b-dropdown-item href="#">个人中心</b-dropdown-item>
               <b-dropdown-item href="#">退出</b-dropdown-item>
             </div>
-            <b-dropdown-item href="#" v-else>登录</b-dropdown-item>
+            <div v-else>
+              <b-dropdown-item href="#" @click="$refs.LoginForm.openModel()">登录</b-dropdown-item>
+              <b-dropdown-item href="#" @click="$refs.RegisterForm.openModel()">注册</b-dropdown-item>
+            </div>
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
+
+    <!-- 登录表单组件 -->
+    <LoginForm ref="LoginForm" />
+    <!-- 注册表单组件 -->
+    <RegisterForm ref="RegisterForm" />
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+import LoginForm from "./components/LoginForm";
+import RegisterForm from "./components/RegisterForm";
 
 export default {
   name: "Navbar",
+  components: {
+    LoginForm,
+    RegisterForm
+  },
   computed: {
     ...mapGetters(["isLogin", "name"])
   },
@@ -53,9 +68,7 @@ export default {
       immediate: true
     }
   },
-  methods: {
-    handleRouteChange(i) {}
-  }
+  methods: {}
 };
 </script>
 
