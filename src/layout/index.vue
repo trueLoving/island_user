@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import Navbar from "@/components/Navbar/index";
+import Navbar from "./components/Navbar/index";
 
 export default {
   components: {
