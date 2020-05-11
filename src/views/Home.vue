@@ -11,12 +11,18 @@ export default {
 </script>
 
 <style scoped>
+.home-container{
+  width: 100%;
+  height: 100%;
+}
 .home-title{
   color: #707070;
   font-size: 45px;
-  position: absolute;
+  text-align: center;
+  margin-top: 40vh;
+  /* position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%); */
 }
 </style>

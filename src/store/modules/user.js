@@ -2,7 +2,7 @@
 const state = {
     token: '',
     name: '',
-    isLogin: false
+    isLogin: true
 }
 
 const mutations = {
