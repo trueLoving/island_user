@@ -40,11 +40,15 @@ export default {
   width: 23%;
   height: 750px;
   background: #fff;
+  border-radius: 6px;
+  box-shadow: 6px 6px 6px 6px gray;
 }
 .app-container {
   float: right;
   width: 75%;
   height: 750px;
   background: #fff;
+  border-radius: 6px;
+  box-shadow: 6px 6px 6px 6px gray;
 }
 </style>

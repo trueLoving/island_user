@@ -16,9 +16,9 @@ export default {
   height: 100%;
 }
 .home-title{
-  color: rgba(0, 0, 0, 0.849);
+  color: rgba(0, 0, 0, 0.49);
   font-size: 45px;
   text-align: center;
-  margin-top: 40vh;
+  margin-top: 30vh;
 }
 </style>
