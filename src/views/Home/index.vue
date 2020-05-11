@@ -19,6 +19,6 @@ export default {
   color: rgba(0, 0, 0, 0.49);
   font-size: 45px;
   text-align: center;
-  margin-top: 30vh;
+  margin-top: 35vh;
 }
 </style>
