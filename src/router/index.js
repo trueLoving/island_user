@@ -28,12 +28,12 @@ const routes = [
         component: () => import('@/views/Exams/index.vue')
       },
       {
-        path: 'practices',
+        path: 'exercises',
         name: 'Practices',
         meta: {
           i: 2
         },
-        component: () => import('@/views/Practices/index.vue')
+        component: () => import('@/views/Exercises/index.vue')
       },
       {
         path: 'personCenter',

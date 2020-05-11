@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    Hello Practices
+    Hello Exercises
   </div>
 </template>
 
