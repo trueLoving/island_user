@@ -1,10 +1,12 @@
 <template>
-  <section class="app-main">
+  <div>
     <Navbar />
-    <transition name="fade">
-      <router-view />
-    </transition>
-  </section>
+    <div class="app-main">
+      <transition name="fade">
+        <router-view />
+      </transition>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -20,10 +22,10 @@ export default {
 
 <style scoped>
 .fade-enter-active {
-  transition: all .5s ease;
+  transition: all 0.5s ease;
 }
 .fade-enter-leave-active {
-  transition: all .8s ease;
+  transition: all 0.8s ease;
 }
 .fade-enter {
   transform: translateX(-20px);
