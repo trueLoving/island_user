@@ -17,7 +17,7 @@ const routes = [
         meta: {
           i: 0
         },
-        component: () => import('@/views/Home.vue')
+        component: () => import('@/views/Home/index.vue')
       },
       {
         path: 'exams',
@@ -25,7 +25,7 @@ const routes = [
         meta: {
           i: 1
         },
-        component: () => import('@/views/Exams.vue')
+        component: () => import('@/views/Exams/index.vue')
       },
       {
         path: 'practices',
@@ -33,12 +33,12 @@ const routes = [
         meta: {
           i: 2
         },
-        component: () => import('@/views/Practices.vue')
+        component: () => import('@/views/Practices/index.vue')
       },
       {
         path: 'personCenter',
         name: 'PersonCenter',
-        component: () => import('@/views/PersonCenter.vue')
+        component: () => import('@/views/PersonCenter/index.vue')
       }
     ]
   }
