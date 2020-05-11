@@ -14,26 +14,31 @@ const routes = [
       {
         path: 'home',
         name: 'Home',
-        meta:{
-          i:0
+        meta: {
+          i: 0
         },
         component: () => import('@/views/Home.vue')
       },
       {
         path: 'exams',
         name: 'Exams',
-        meta:{
-          i:1
+        meta: {
+          i: 1
         },
         component: () => import('@/views/Exams.vue')
       },
       {
         path: 'practices',
         name: 'Practices',
-        meta:{
-          i:2
+        meta: {
+          i: 2
         },
         component: () => import('@/views/Practices.vue')
+      },
+      {
+        path: 'personCenter',
+        name: 'PersonCenter',
+        component: () => import('@/views/PersonCenter.vue')
       }
     ]
   }
