@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="app-container">
     <Navbar />
     <div class="app-main">
       <transition name="fade">
@@ -34,5 +34,9 @@ export default {
 .fade-leave-to {
   transform: translateX(-20px);
   opacity: 0;
+}
+.app-container{
+  background: #eee;
+  height: 100vh;
 }
 </style>

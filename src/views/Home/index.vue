@@ -16,13 +16,9 @@ export default {
   height: 100%;
 }
 .home-title{
-  color: #707070;
+  color: rgba(0, 0, 0, 0.849);
   font-size: 45px;
   text-align: center;
   margin-top: 40vh;
-  /* position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%); */
 }
 </style>
