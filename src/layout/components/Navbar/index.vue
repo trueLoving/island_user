@@ -5,9 +5,9 @@
       <b-navbar-brand to="./home">旧岛</b-navbar-brand>
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav v-if="isLogin">
-            <b-nav-item to="./home" :active="activeStatus[0]">主页</b-nav-item>
-            <b-nav-item to="./exams" :active="activeStatus[1]">考试</b-nav-item>
-            <b-nav-item to="./Exercises" :active="activeStatus[2]">刷题</b-nav-item>
+            <b-nav-item to="/home" :active="activeStatus[0]">主页</b-nav-item>
+            <b-nav-item to="/exams" :active="activeStatus[1]">考试</b-nav-item>
+            <b-nav-item to="/Exercises" :active="activeStatus[2]">刷题</b-nav-item>
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto">
           <b-nav-item-dropdown right>
