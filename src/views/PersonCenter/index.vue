@@ -1,29 +1,20 @@
 <template>
   <div class="personCenter-container">
-    <b-container fluid>
-      <div class="sidebar-container">
-        <SidebarItem text="个人中心" />
-        <SidebarItem text="历史习题" />
-        <SidebarItem text="历史考试" />
-        <SidebarItem text="错题集" />
-      </div>
-      <div class="app-container"></div>
-    </b-container>
+    <Sidebar />
+    <AppMain />
   </div>
 </template>
 
 <script>
-import SidebarItem from "./components/SidebarItem";
+import AppMain from "./components/AppMain";
+import Sidebar from "./components/Sidebar";
 
 export default {
   name: "PersonCenter",
   components: {
-    SidebarItem
-  },
-  data() {
-    return {};
-  },
-  methods: {}
+    Sidebar,
+    AppMain
+  }
 };
 </script>
 
@@ -34,21 +25,5 @@ export default {
   padding: 20px;
   border-radius: 6px;
   height: 820px;
-}
-.sidebar-container {
-  float: left;
-  width: 23%;
-  height: 750px;
-  background: #fff;
-  border-radius: 6px;
-  box-shadow: 6px 6px 6px 6px gray;
-}
-.app-container {
-  float: right;
-  width: 75%;
-  height: 750px;
-  background: #fff;
-  border-radius: 6px;
-  box-shadow: 6px 6px 6px 6px gray;
 }
 </style>

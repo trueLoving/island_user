@@ -11,8 +11,7 @@ export default {
   props: {
     text: {
       type: String,
-      required: false,
-      default: "Hello World"
+      required: true
     }
   }
 };
@@ -21,6 +20,7 @@ export default {
 <style scoped>
 .page-header-container {
   margin: 40px auto;
+  margin-bottom: 0;
   width: 95%;
 }
 .page-header-text {

@@ -1,6 +1,6 @@
 <template>
-  <router-link :to="link" :style="isActive?'color:green':'color:#333'">
-    <b-card>
+  <router-link :to="link">
+    <b-card :style="isActive?'background: #eee;color:#25bb9b':'background: #fff;color:#333'">
       <b-card-text style="padding:0 0 0 20px;">
         <div class="sidebar-item-text">{{text}}</div>
         <ArrowRight class="sidebar-item-arrow-right" />
@@ -10,6 +10,7 @@
 </template>
 
 <script>
+
 import ArrowRight from "./ArrowRight";
 
 export default {
@@ -18,29 +19,27 @@ export default {
     ArrowRight
   },
   props: {
-    isActive: {
-      type: Boolean,
-      required: false,
-      default: false
+    isActive:{
+      type:Boolean,
+      required:true
     },
     link: {
       type: String,
-      required: false,
-      default: "./test/detail"
+      required: true
     },
     text: {
       type: String,
       required: false,
       default: "文本内容"
     }
-  }
+  },
 };
 </script>
 
 <style scoped>
 .card-body:hover {
   background: #eee;
-  color: #25bb9b
+  color: #25bb9b;
 }
 a {
   text-decoration: none;

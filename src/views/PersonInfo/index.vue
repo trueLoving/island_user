@@ -1,13 +1,17 @@
 <template>
-  <h1>个人信息</h1>
+  <div class="personInfo-container">
+    <h1>个人信息</h1>
+  </div>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
-<style>
-
+<style scoped>
+.personInfo-container {
+  margin: 6px auto;
+  width: 95%;
+  overflow: auto;
+}
 </style>
