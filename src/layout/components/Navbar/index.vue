@@ -5,9 +5,9 @@
       <b-navbar-brand to="./home">旧岛</b-navbar-brand>
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav v-if="isLogin">
-            <b-nav-item to="/home" :active="activeStatus[0]">主页</b-nav-item>
-            <b-nav-item to="/exams" :active="activeStatus[1]">考试</b-nav-item>
-            <b-nav-item to="/Exercises" :active="activeStatus[2]">刷题</b-nav-item>
+          <b-nav-item to="/home" :active="activeStatus[0]">主页</b-nav-item>
+          <b-nav-item to="/exams" :active="activeStatus[1]">考试</b-nav-item>
+          <b-nav-item to="/Exercises" :active="activeStatus[2]">刷题</b-nav-item>
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto">
           <b-nav-item-dropdown right>
@@ -18,7 +18,7 @@
             </template>
             <div v-if="isLogin">
               <b-dropdown-item to="./personCenter">个人主页</b-dropdown-item>
-              <b-dropdown-item href="#">退出</b-dropdown-item>
+              <b-dropdown-item href="#" @click="$bvModal.show('logout')">退出</b-dropdown-item>
             </div>
             <div v-else>
               <b-dropdown-item href="#" @click="$refs.LoginForm.openModel()">登录</b-dropdown-item>
@@ -32,6 +32,10 @@
     <LoginForm ref="LoginForm" />
     <!-- 注册表单组件 -->
     <RegisterForm ref="RegisterForm" />
+
+    <b-modal id="logout" title="退出" ok-title="确定" cancel-title="取消" @ok="logout">
+      <p>此行为会退出当前用户,是否继续</p>
+    </b-modal>
   </div>
 </template>
 
@@ -65,7 +69,14 @@ export default {
       immediate: true
     }
   },
-  methods: {}
+  methods: {
+    logout() {
+      // todo 
+      this.$store.dispatch("user/logout").then(res => {
+        this.$router.push({ path: "/" });
+      });
+    }
+  }
 };
 </script>
 

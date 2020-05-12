@@ -23,7 +23,7 @@ const actions = {
     },
 
     logout({ commit, state }) {
-
+        commit('SET_ISLOGIN',false);
     }
 }
 
