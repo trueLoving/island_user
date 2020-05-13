@@ -17,7 +17,7 @@
               <span v-else>用户</span>
             </template>
             <div v-if="isLogin">
-              <b-dropdown-item to="./personCenter">个人主页</b-dropdown-item>
+              <b-dropdown-item to="/personCenter">个人主页</b-dropdown-item>
               <b-dropdown-item href="#" @click="$bvModal.show('logout')">退出</b-dropdown-item>
             </div>
             <div v-else>
