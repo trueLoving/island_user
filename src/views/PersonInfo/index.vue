@@ -1,6 +1,6 @@
 <template>
   <div class="personInfo-container">
-    <h1>个人信息</h1>
+    <h2>个人信息</h2>
   </div>
 </template>
 
