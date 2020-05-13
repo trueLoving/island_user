@@ -7,13 +7,14 @@ function resolve(dir) {
 
 const port = 9528 // dev port
 
+const debug = process.env.NODE_ENV !== 'production'
 
 module.exports = {
     publicPath: '/',
     outputDir: 'dist',
     assetsDir: 'static',
     // lintOnSave: process.env.NODE_ENV === 'development',
-    lintOnSave:false,
+    lintOnSave: false,
     productionSourceMap: false,
     devServer: {
         port: port,
@@ -30,11 +31,9 @@ module.exports = {
             }
         },
     },
-    configureWebpack: {
-        resolve: {
-            alias: {
-                '@': resolve('src')
-            }
+    configureWebpack: config => {
+        if (debug) {
+            config.devtool = 'source-map'
         }
-    },
+    }
 }
