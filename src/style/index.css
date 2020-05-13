@@ -1,4 +1,4 @@
-/* 修改浏览器默认滚动条 */
+/* 修改浏览器默认滚动条 只支持chrome */
 ::-webkit-scrollbar{
     width: 10px;
     height: 10px;
