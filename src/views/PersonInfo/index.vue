@@ -1,6 +1,18 @@
 <template>
   <div class="personInfo-container">
     <h1>个人信息</h1>
+    <h1>个人信息</h1>
+    <h1>个人信息</h1>
+    <h1>个人信息</h1>
+    <h1>个人信息</h1>
+    <h1>个人信息</h1>
+    <h1>个人信息</h1>
+    <h1>个人信息</h1>
+    <h1>个人信息</h1>
+    <h1>个人信息</h1>
+    <h1>个人信息</h1>
+    <h1>个人信息</h1>
+    <h1>个人信息</h1>
   </div>
 </template>
 
@@ -14,4 +26,5 @@ export default {};
   width: 95%;
   overflow: auto;
 }
+
 </style>
