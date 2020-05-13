@@ -9,25 +9,14 @@ const service = axios.create({
 
 // request interceptor
 service.interceptors.request.use(
-  config => {
-    // todo 
-    return config
-  },
-  error => {
-    return Promise.reject(error)
-  }
+  config => /* todo */ config,
+  error => Promise.reject(error)
 )
 
 // response interceptor
 service.interceptors.response.use(
-
-  response => {
-    // todo
-    return response;
-  },
-  error => {
-    return Promise.reject(error)
-  }
+  response => response.data,
+  error => Promise.reject(error)
 )
 
 export default service
