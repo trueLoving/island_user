@@ -72,6 +72,13 @@ export default {
         return;
       }
       // todo api request
+      this.$store.dispatch("user/login", this.form).then(res => {
+      
+        //todo handle response
+        // this.$router.reload();
+
+        
+      });
 
       // Hide the modal manually
       this.$nextTick(() => {
