@@ -46,6 +46,7 @@ const actions = {
         return new Promise((resolve,reject)=>{
             // todo api request
             commit('SET_ISLOGIN', false);
+            resolve();
         })
     }
 
