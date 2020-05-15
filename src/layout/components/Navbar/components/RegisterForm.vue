@@ -19,8 +19,8 @@
 
         <b-form-group label="性别">
           <b-form-radio-group v-model="form.sex">
-            <b-form-radio value="1">男</b-form-radio>
-            <b-form-radio value="2">女</b-form-radio>
+            <b-form-radio value=1>男</b-form-radio>
+            <b-form-radio value=2>女</b-form-radio>
           </b-form-radio-group>
           <b-form-invalid-feedback :state="errMsg.sex==''">{{errMsg.sex}}</b-form-invalid-feedback>
         </b-form-group>
@@ -31,13 +31,13 @@
         </b-form-group>
 
         <b-form-group label="密码:">
-          <b-form-input v-model="form.password" placeholder="请输入密码"></b-form-input>
-          <b-form-invalid-feedback :state="errMsg.password==''">{{errMsg.password}}</b-form-invalid-feedback>
+          <b-form-input v-model="form.password1" placeholder="请输入密码"></b-form-input>
+          <b-form-invalid-feedback :state="errMsg.password1==''">{{errMsg.password1}}</b-form-invalid-feedback>
         </b-form-group>
 
         <b-form-group label="确认密码:">
-          <b-form-input v-model="form.passwordAgain" placeholder="请再次输入密码"></b-form-input>
-          <b-form-invalid-feedback :state="errMsg.passwordAgain==''">{{errMsg.passwordAgain}}</b-form-invalid-feedback>
+          <b-form-input v-model="form.password2" placeholder="请再次输入密码"></b-form-input>
+          <b-form-invalid-feedback :state="errMsg.password2==''">{{errMsg.password2}}</b-form-invalid-feedback>
         </b-form-group>
 
         <b-form-group label="邮箱">
@@ -50,6 +50,7 @@
 </template>
 
 <script>
+import { register } from "@/api/user.js";
 import { isNotEmpty, validateEMail } from "@/validators/index.js";
 
 export default {
@@ -60,24 +61,24 @@ export default {
         username: "",
         sex: "",
         account: "",
-        password: "",
-        passwordAgain: "",
+        password1: "",
+        password2: "",
         email: ""
       },
       rules: {
         username: [isNotEmpty],
         sex: [isNotEmpty],
         account: [isNotEmpty],
-        password: [isNotEmpty],
-        passwordAgain: [isNotEmpty],
+        password1: [isNotEmpty],
+        password2: [isNotEmpty],
         email: [isNotEmpty, validateEMail]
       },
       errMsg: {
-        username: "123",
+        username: "",
         sex: "",
         account: "",
-        password: "",
-        passwordAgain: "",
+        password1: "",
+        password2: "",
         email: ""
       },
       modalShow: false,
@@ -96,29 +97,27 @@ export default {
       this.validate = true;
 
       Object.keys(this.form).forEach(key => {
+        this.errMsg[key]=''
         let currentValidate = this.rules[key].every(rule =>
           rule(this.form[key], key, this.errMsg)
         );
         if (!currentValidate) {
-          this.validate = false;
+          this.validate = false
         }
       });
 
-      if (this.form.password !== this.form.passwordAgain) {
-        this.errMsg.passwordAgain = "密码输入不一致";
-        this.state.passwordAgain = false;
+      if (this.form.password1 !== this.form.password2) {
+        this.errMsg.password2 = "密码输入不一致";
         this.validate = false;
       }
 
       return this.validate;
     },
     resetModal() {
-      this.username = "";
-      this.sex = "";
-      this.account = "";
-      this.password = "";
-      this.passwordAgain = "";
-      this.email = "";
+      Object.keys(this.form).forEach((key)=>{
+        this.form[key]="";
+
+      });
     },
     handleOk(bvModalEvt) {
       // Prevent modal from closing
@@ -131,7 +130,18 @@ export default {
       if (!this.checkFormValidity()) {
         return;
       }
+
       // todo api request
+      register(this.form).then((res)=>{
+        // console.log(res);
+        if(res.code==200){
+          
+        }else{
+          
+        }
+      }).catch((err)=>{
+        console.log(err);
+      })
 
       // Hide the modal manually
       this.$nextTick(() => {
