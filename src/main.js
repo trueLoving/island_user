@@ -8,14 +8,16 @@ import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
+Vue.use(BootstrapVue)
+Vue.use(BootstrapVueIcons)
+
 // global css
 import '@/style/index.css';
 
 import Message from 'nullwu-vue-message'
 Vue.use(Message)
 
-Vue.use(BootstrapVue)
-Vue.use(BootstrapVueIcons)
+import '@/permission'
 
 Vue.config.productionTip = false
 
