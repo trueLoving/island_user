@@ -11,6 +11,9 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 // global css
 import '@/style/index.css';
 
+import Message from 'nullwu-vue-message'
+Vue.use(Message)
+
 Vue.use(BootstrapVue)
 Vue.use(BootstrapVueIcons)
 
