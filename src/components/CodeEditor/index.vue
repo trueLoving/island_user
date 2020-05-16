@@ -9,7 +9,7 @@
       ></b-form-select>
       <b-button variant="success" class="submit-button" @click="submit">提交</b-button>
       <b-button variant="danger" class="reset-button" @click="reset">重置</b-button>
-      <b-button variant="primary" class="format-button" @click="submit">代码格式化</b-button>
+      <!-- <b-button variant="primary" class="format-button" @click="formatCode">代码格式化</b-button> -->
     </div>
     <textarea ref="textarea"></textarea>
   </div>
@@ -64,6 +64,8 @@ const CodeMirror = window.CodeMirror || _CodeMirror;
 
 // 获取可配置选项
 import modes from "./modes";
+
+import formatCode from '@/utils/formatCode.js';
 
 export default {
   name: "CodeEditor",
@@ -181,6 +183,10 @@ export default {
     },
     reset() {
       this.coder.setValue("");
+    },
+    formatCode(){ 
+      const value = formatCode(this.mode,this.coder.getValue());
+      this.coder.setValue(value);
     }
   },
   mounted() {

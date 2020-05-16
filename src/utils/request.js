@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Message from "@/components/MessageBox";
 
 // create an axios instance
 const service = axios.create({
@@ -15,8 +16,11 @@ service.interceptors.request.use(
 
 // response interceptor
 service.interceptors.response.use(
-  response => response.data,
-  error => Promise.reject(error)
+  response => response,
+  error => {
+    // Message.show({type:'success',text:'ok'});
+    Promise.reject(error)
+  }
 )
 
 export default service
