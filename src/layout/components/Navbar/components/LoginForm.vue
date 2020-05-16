@@ -27,7 +27,7 @@
 <script>
 export default {
   name: "LoginForm",
-  inject:['reload'],
+  inject: ["reload"],
   data() {
     return {
       form: {
@@ -74,9 +74,8 @@ export default {
       }
       this.$store.dispatch("user/login", this.form).then(res => {
         //todo handle response
-        console.log(res);
-        this.$message({type:'success',text:'登录成功'})
-        this.reload();
+        this.$message({ type: "success", text: "登录成功" });
+        this.$router.push({ path: "/home" }).catch(_=>{})
       });
 
       // Hide the modal manually

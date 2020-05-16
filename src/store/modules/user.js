@@ -1,4 +1,6 @@
 import { login, getInfo, logout } from "@/api/user";
+import { getToken, setToken, removeToken } from '@/utils/auth'
+
 
 const state = {
     token: '',
@@ -27,29 +29,33 @@ const mutations = {
 }
 
 const actions = {
-    
+
     login({ commit }, userInfo) {
         return new Promise((resolve, reject) => {
             // todo api request
+            setToken('hello world');
             commit('SET_ISLOGIN', true);
-            resolve(userInfo);
+            resolve();
         })
     },
 
-    getInfo({ commit, state }) {
-        return new Promise((resolve,reject)=>{
+    getInfo({ commit }, loginState = true) {
+        return new Promise((resolve, reject) => {
             // todo api request
+            commit('SET_NAME', '张三');
+            commit('SET_ISLOGIN', loginState);
+            resolve();
         })
     },
 
     logout({ commit, state }) {
-        return new Promise((resolve,reject)=>{
+        return new Promise((resolve, reject) => {
             // todo api request
+            removeToken();
             commit('SET_ISLOGIN', false);
             resolve();
         })
     }
-
 }
 
 export default {

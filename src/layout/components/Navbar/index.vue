@@ -73,7 +73,8 @@ export default {
     logout() {
       // todo 
       this.$store.dispatch("user/logout").then(res => {
-        this.$router.push({ path: "/" });
+        this.$message({type:'success',text:'退出成功'})
+        this.$router.push({ path: "/home" }).catch(_=>{})
       });
     }
   }
