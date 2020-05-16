@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { personCenterRoutes } from "@/router/index.js";
+import  personCenterRoutes from "@/router/module/personCenterRoutes";
 import SidebarItem from "./SidebarItem";
 
 export default {
@@ -48,7 +48,7 @@ export default {
 .sidebar-container {
   float: left;
   width: 23%;
-  height: 750px;
+  height: 88vh;
   background: #fff;
   border-radius: 6px;
   box-shadow: 6px 6px 6px 6px gray;

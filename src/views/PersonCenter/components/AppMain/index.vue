@@ -36,7 +36,7 @@ export default {
 .app-container {
   float: right;
   width: 75%;
-  height: 750px;
+  height: 88vh;
   background: #fff;
   border-radius: 6px;
   box-shadow: 6px 6px 6px 6px gray;
