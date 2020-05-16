@@ -24,6 +24,14 @@ export default  [
       component: () => import('@/views/HistoryExams/index.vue')
     },
     {
+      path: 'itemBankCollection',
+      name: 'ItemBankCollection',
+      meta: {
+        text: '收藏题库'
+      },
+      component: () => import('@/views/ItemBankCollection/index.vue')
+    },
+    {
       path: 'mistakesCollection',
       name: 'MistakesCollection',
       meta: {
