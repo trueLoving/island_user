@@ -1,11 +1,8 @@
 <template>
-  <div class="c-message " :class="[visible?'messageFadeInDown':'messageFadeOutUp']">
+  <div class="c-message" :class="[visible?'messageFadeInDown':'messageFadeOutUp']">
     <a v-if="!autoClose" class="c-message--close" @click="closeFn">×</a>
-    <i class="c-message--icon   " :class="message_type">
-    </i>
-    <div class="c-message--tip">
-      {{text}}
-    </div>
+    <i class="c-message--icon" :class="message_type"></i>
+    <div class="c-message--tip">{{text}}</div>
   </div>
 </template>
 <script>
