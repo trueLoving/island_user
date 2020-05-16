@@ -13,7 +13,6 @@ module.exports = {
     publicPath: '/',
     outputDir: 'dist',
     assetsDir: 'static',
-    // lintOnSave: process.env.NODE_ENV === 'development',
     lintOnSave: false,
     productionSourceMap: false,
     devServer: {
@@ -26,7 +25,7 @@ module.exports = {
         proxy: {
             [process.env.VUE_APP_BASE_API]: {
                 ws: false,
-                target: 'http://localhost:3000',
+                target: 'http://120.27.247.78:3000/ ',
                 changeOrigin: true
             }
         },
