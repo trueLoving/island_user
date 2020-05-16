@@ -13,7 +13,7 @@
           <b-nav-item-dropdown right>
             <!-- Using 'button-content' slot -->
             <template v-slot:button-content>
-              <b-avatar variant="primary" :text="name" v-if="isLogin"></b-avatar>
+              <span v-if="isLogin">{{name}}</span>
               <span v-else>用户</span>
             </template>
             <div v-if="isLogin">

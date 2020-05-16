@@ -13,7 +13,7 @@
     >
       <form ref="form" @submit.stop.prevent="handleSubmit">
         <b-form-group label="用户名:">
-          <b-form-input v-model="form.username" placeholder="请输入用户名" :state="usernameState"></b-form-input>
+          <b-form-input v-model="form.account" placeholder="请输入用户名" :state="usernameState"></b-form-input>
         </b-form-group>
 
         <b-form-group label="密码:">
@@ -27,10 +27,11 @@
 <script>
 export default {
   name: "LoginForm",
+  inject:['reload'],
   data() {
     return {
       form: {
-        username: "",
+        account: "",
         password: ""
       },
       usernameState: null,
@@ -46,7 +47,7 @@ export default {
       this.modalShow = false;
     },
     checkFormValidity() {
-      if (!this.form.username) {
+      if (!this.form.account) {
         this.usernameState = false;
         return false;
       }
@@ -57,7 +58,7 @@ export default {
       return true;
     },
     resetModal() {
-      this.username = "";
+      this.account = "";
       this.password = "";
     },
     handleOk(bvModalEvt) {
@@ -71,13 +72,11 @@ export default {
       if (!this.checkFormValidity()) {
         return;
       }
-      // todo api request
       this.$store.dispatch("user/login", this.form).then(res => {
-      
         //todo handle response
-        // this.$router.reload();
-
-        
+        console.log(res);
+        this.$message({type:'success',text:'登录成功'})
+        this.reload();
       });
 
       // Hide the modal manually
