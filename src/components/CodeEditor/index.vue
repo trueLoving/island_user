@@ -9,8 +9,9 @@
       ></b-form-select>
       <b-button variant="success" class="submit-button" @click="submit">提交</b-button>
       <b-button variant="danger" class="reset-button" @click="reset">重置</b-button>
+      <b-button variant="primary" class="format-button" @click="submit">代码格式化</b-button>
     </div>
-    <textarea ref="textarea" class="edit-area"></textarea>
+    <textarea ref="textarea"></textarea>
   </div>
 </template>
 
@@ -37,6 +38,26 @@ import "codemirror/mode/shell/shell.js";
 import "codemirror/mode/sql/sql.js";
 import "codemirror/mode/swift/swift.js";
 import "codemirror/mode/vue/vue.js";
+
+// 代码块折叠相关依赖
+import "codemirror/addon/fold/foldgutter.css";
+import "codemirror/addon/fold/foldcode.js";
+import "codemirror/addon/fold/foldgutter.js";
+import "codemirror/addon/fold/brace-fold.js";
+import "codemirror/addon/fold/comment-fold.js";
+import "codemirror/addon/fold/indent-fold.js";
+import "codemirror/addon/fold/xml-fold";
+import "codemirror/addon/fold/markdown-fold";
+
+// 代码补齐相关依赖
+import "codemirror/addon/hint/show-hint.css";
+import "codemirror/addon/hint/show-hint.js";
+import "codemirror/addon/hint/javascript-hint";
+import "codemirror/addon/hint/html-hint";
+import "codemirror/addon/hint/css-hint";
+
+// 代码格式化相关依赖
+
 
 // 尝试获取全局实例
 const CodeMirror = window.CodeMirror || _CodeMirror;
@@ -67,12 +88,18 @@ export default {
       options: {
         // 文字过长时，是换行(wrap)还是滚动(scroll),默认是滚动
         lineWrapping: "wrap",
-        // 缩进格式
-        tabSize: 2,
         // 主题，对应主题库 JS 需要提前引入
         theme: "darcula",
         // 显示行号
         lineNumbers: true,
+        //代码折叠
+        lineWrapping: true,
+        foldGutter: true,
+        gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+        //括号匹配
+        matchBrackets: true
+        //自动提示配置
+        // extraKeys: { Tab: "autocomplete" }
       },
       // 支持切换的语法高亮类型，对应 JS 已经提前引入
       // 使用的是 MIME-TYPE ，不过作为前缀的 text/ 在后面指定时写死了
@@ -86,13 +113,27 @@ export default {
       this.coder = CodeMirror.fromTextArea(this.$refs.textarea, this.options);
       // 编辑器赋值
       this.coder.setValue(this.value || this.code);
+      // 设置编译器的宽度和高度
+      this.coder.setSize("100%", "550px");
 
       // 支持双向绑定
       this.coder.on("change", coder => {
+        
         this.code = coder.getValue();
 
         if (this.$emit) {
           this.$emit("input", this.code);
+        }
+
+      });
+
+      // 实时代码 补齐显示
+      this.coder.on("inputRead", (cm, inputObj) => {
+        let inputChar = inputObj.text[0];
+        if (inputChar != "") {
+          this.coder.showHint({
+            completeSingle: false
+          });
         }
       });
 
@@ -153,10 +194,7 @@ export default {
 .toolbar {
   margin: 20px;
 }
-.reset-button {
-  float: right;
-}
-.submit-button {
+.submit-button,.format-button,.reset-button {
   float: right;
   margin: 0 10px;
 }
