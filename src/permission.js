@@ -1,6 +1,9 @@
 import router from './router'
 import store from './store'
 import QProgress from 'qier-progress'
+import { getToken } from '@/utils/auth' // get token from cookie
+
+
 
 const qprogress = new QProgress({
     minimum: 0.08,
@@ -15,11 +18,8 @@ router.beforeEach(async (to, from, next) => {
 
     qprogress.start();
 
-    //获取登录状态
-    const isLogin = store.getters.isLogin;
-
-    // todo 路由拦截
-    if (isLogin) {
+    if (getToken()) {
+        await store.dispatch('user/getInfo');
         next();
     } else {
         // 白名单 放行
