@@ -14,7 +14,7 @@ Vue.use(BootstrapVueIcons)
 // global css
 import '@/style/index.css';
 
-import Message from 'nullwu-vue-message'
+import Message from '@/components/MessageBox/index.js'
 Vue.use(Message)
 
 import '@/permission'
