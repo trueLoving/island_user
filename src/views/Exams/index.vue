@@ -1,5 +1,21 @@
 <template>
-  <div class="exam-container">Hello Exams</div>
+  <div class="exam-container">
+    <h1>Hello Exams</h1>
+     <h1>Hello Exams</h1> <h1>Hello Exams</h1> <h1>Hello Exams</h1>
+      <h1>Hello Exams</h1>
+       <h1>Hello Exams</h1>
+        <h1>Hello Exams</h1>
+         <h1>Hello Exams</h1>
+          <h1>Hello Exams</h1>
+           <h1>Hello Exams</h1>
+            <h1>Hello Exams</h1>
+             <h1>Hello Exams</h1>
+              <h1>Hello Exams</h1>
+               <h1>Hello Exams</h1>
+                <h1>Hello Exams</h1>
+                 <h1>Hello Exams</h1>
+                  <h1>Hello Exams</h1>
+  </div>
 </template>
 
 <script>
@@ -17,5 +33,6 @@ export default {
   border-radius: 6px;
   height: 820px;
   background: #fff;
+  overflow: auto;
 }
 </style>

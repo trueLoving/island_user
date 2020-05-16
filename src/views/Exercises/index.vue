@@ -17,5 +17,6 @@ export default {
   border-radius: 6px;
   height: 820px;
   background: #fff;
+  overflow: auto;
 }
 </style>
