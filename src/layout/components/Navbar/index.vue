@@ -74,7 +74,7 @@ export default {
       // todo 
       this.$store.dispatch("user/logout").then(res => {
         this.$message({type:'success',text:'退出成功'})
-        this.$router.push({ path: "/home" }).catch(_=>{})
+        this.$router.push({ path: "/" }).catch(_=>{})
       });
     }
   }

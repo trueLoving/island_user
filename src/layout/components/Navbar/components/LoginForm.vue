@@ -75,7 +75,7 @@ export default {
       this.$store.dispatch("user/login", this.form).then(res => {
         //todo handle response
         this.$message({ type: "success", text: "登录成功" });
-        this.$router.push({ path: "/home" }).catch(_=>{})
+        this.$router.push({ path: "/" }).catch(_=>{})
       });
 
       // Hide the modal manually
