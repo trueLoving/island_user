@@ -44,7 +44,7 @@ const actions = {
 
     getInfo({ commit, state }, loginState = true) {
         return new Promise((resolve, reject) => {
-            getInfo(state.token).then((res) => {
+            getInfo().then((res) => {
                 const { data } = res;
                 commit('SET_NAME', data.username);
                 commit('SET_ISLOGIN', loginState);

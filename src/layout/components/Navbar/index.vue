@@ -18,6 +18,7 @@
             </template>
             <div v-if="isLogin">
               <b-dropdown-item to="/personCenter">个人主页</b-dropdown-item>
+              <b-dropdown-item href="#" @click="$refs.ChangePwd.openModel()">修改密码</b-dropdown-item>
               <b-dropdown-item href="#" @click="$bvModal.show('logout')">退出</b-dropdown-item>
             </div>
             <div v-else>
@@ -32,6 +33,8 @@
     <LoginForm ref="LoginForm" />
     <!-- 注册表单组件 -->
     <RegisterForm ref="RegisterForm" />
+    <!-- 密码修改表单组件 -->
+    <ChangePwd ref="ChangePwd"/>
 
     <b-modal id="logout" title="退出" ok-title="确定" cancel-title="取消" @ok="logout">
       <p>此行为会退出当前用户,是否继续</p>
@@ -43,12 +46,14 @@
 import { mapGetters } from "vuex";
 import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
+import ChangePwd from "./components/ChangePwd";
 
 export default {
   name: "Navbar",
   components: {
     LoginForm,
-    RegisterForm
+    RegisterForm,
+    ChangePwd
   },
   computed: {
     ...mapGetters(["isLogin", "name"])

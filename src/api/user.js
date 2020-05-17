@@ -9,12 +9,10 @@ export function login(data) {
     })
 }
 
-export function getInfo(data) {
+export function getInfo() {
     return request({
         url: '/user/detail',
         method: 'get',
-        data,
-        auth:data
     })
 }
 
@@ -35,11 +33,30 @@ export function register(data) {
 }
 
 
+export function modifyPersonInfo(data) {
+    return request({
+        url: '/user/modify',
+        method: 'post',
+        data
+    })
+}
+
+export function changePwd(data) {
+    return request({
+        url: '',
+        method: '',
+        data
+    })
+}
+
 /**
+ *
+ * 用户测试数据
+ *
  * starsky
  *
  * test100/test100
- * 
+ *
  * test12138/test12138
- * 
+ *
  */
