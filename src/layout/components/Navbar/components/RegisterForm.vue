@@ -19,8 +19,8 @@
 
         <b-form-group label="性别">
           <b-form-radio-group v-model="form.sex">
-            <b-form-radio value=1>男</b-form-radio>
-            <b-form-radio value=2>女</b-form-radio>
+            <b-form-radio value="1">男</b-form-radio>
+            <b-form-radio value="2">女</b-form-radio>
           </b-form-radio-group>
           <b-form-invalid-feedback :state="errMsg.sex==''">{{errMsg.sex}}</b-form-invalid-feedback>
         </b-form-group>
@@ -55,6 +55,7 @@ import { isNotEmpty, validateEMail } from "@/validators/index.js";
 
 export default {
   name: "RegisterForm",
+  inject:['reload'],
   data() {
     return {
       form: {
@@ -131,17 +132,12 @@ export default {
         return;
       }
 
-      // todo api request
       register(this.form).then((res)=>{
-        // console.log(res);
         if(res.code==200){
-          
-        }else{
-          
-        }
-      }).catch((err)=>{
-        console.log(err);
-      })
+          this.$message({type:'success',text:'注册成功,请重新登录'});
+          this.reload();
+        }  
+      }).catch(_=>{});
 
       // Hide the modal manually
       this.$nextTick(() => {
