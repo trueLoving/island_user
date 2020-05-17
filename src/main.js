@@ -19,6 +19,13 @@ Vue.use(Message)
 
 import '@/permission'
 
+
+import 'xe-utils'
+import VXETable from 'vxe-table'
+import 'vxe-table/lib/index.css'
+Vue.use(VXETable)
+
+
 Vue.config.productionTip = false
 
 new Vue({
