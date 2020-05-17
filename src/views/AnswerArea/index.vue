@@ -1,10 +1,26 @@
 <template>
-  <h1>答题区域</h1>
+  <div class="answer-area-container">
+    <ProblemList/>
+    <ProblemDetail/>
+  </div>
 </template>
 
 <script>
+
+import ProblemList from "./components/ProblemList";
+import ProblemDetail from "./components/ProblemDetail";
+
 export default {
-  name: "AnswerArea"
+  name: "AnswerArea",
+  components:{
+    ProblemList,
+    ProblemDetail
+  },
+  data(){
+    return{
+      
+    }
+  }
 };
 </script>
 

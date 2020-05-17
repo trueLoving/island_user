@@ -14,8 +14,8 @@
         <vxe-table-column field="username" title="创建者"></vxe-table-column>
         <vxe-table-column field="updated_at" title="更新时间"></vxe-table-column>
         <vxe-table-column title="操作">
-          <template slot-scope="{row}">
-            <b-button variant="success" size="sm">开始刷题</b-button>
+          <template v-slot="{row}">
+            <b-button variant="success" size="sm" @click="handleClick(row)">进入题库</b-button>
           </template>
         </vxe-table-column>
       </vxe-table>
@@ -53,10 +53,15 @@ export default {
     handlePageChange(){
 
     },
+    handleClick(library){
+      // console.log(library);
+      this.$router.push({path:'/chapterArea'});
+    },
     getList(){
       api.getLibraries({
         currentPage:1
       }).then((res)=>{
+
         this.list = res.data;
         this.listQuery.totalResult = res.data.length;
       })
@@ -68,16 +73,6 @@ export default {
 }
 </script>
 <style scoped>
-.exercises-container {
-  /* width: 95vw;
-  margin: 30px auto;
-  box-shadow: 10px 10px 10px 10px gray;
-  padding: 20px;
-  border-radius: 6px; */
-  /* height: 820px; */
-  /* background: #fff;
-  overflow: auto; */
-}
 .table-container {
   width: 95vw;
   margin: 30px auto;

@@ -45,6 +45,16 @@ const routes = [
         component: () => import('@/views/PersonCenter/index.vue'),
         children: personCenterRoutes
       },
+      {
+        path: '/chapterArea',
+        name: 'ChapterArea',
+        component: () => import('@/views/ChapterArea/index.vue')
+      },
+      { 
+        path: '/answerArea',
+        name: 'AnswerArea',
+        component: () => import('@/views/AnswerArea/index.vue')
+      }
     ]
   }
 ]
