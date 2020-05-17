@@ -21,7 +21,7 @@ export default {
         }
         clearTimeout(this.timer);
         this.timer = null;
-        console.log(this.timer);
+        // console.log(this.timer);
       });
     },
     // 自动关闭

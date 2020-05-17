@@ -1,5 +1,7 @@
 import axios from 'axios'
 import Message from "@/components/MessageBox";
+import store from '@/store'
+import { getToken } from '@/utils/auth'
 
 // create an axios instance
 const service = axios.create({
@@ -10,15 +12,23 @@ const service = axios.create({
 
 // request interceptor
 service.interceptors.request.use(
-  config => /* todo */ config,
+  config => {
+    if(store.getters.token){
+      config.auth = {
+        username: getToken()
+      }
+    }
+    return config
+  },
   error => Promise.reject(error)
 )
 
 // response interceptor
 service.interceptors.response.use(
-  response => response,
-  error => {
-    // Message.show({type:'success',text:'ok'});
+  response => response.data,
+  (error) => {
+    const errorMsg = error.response.data.message.toString();
+    Message.show({ type: 'error', text: errorMsg || error.toString() });
     Promise.reject(error)
   }
 )

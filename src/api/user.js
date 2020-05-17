@@ -13,7 +13,8 @@ export function getInfo(data) {
     return request({
         url: '/user/detail',
         method: 'get',
-        data
+        data,
+        auth:data
     })
 }
 
@@ -25,15 +26,6 @@ export function logout() {
 }
 
 
-/**
- * 
- * @param {Object} data
- * account  --  用户账号
- * password --  用户密码
- * username --  用户名
- * email    --  用户邮箱 can null
- * sex      --  用户性别
- */
 export function register(data) {
     return request({
         url: '/user/register',
@@ -41,3 +33,13 @@ export function register(data) {
         data
     })
 }
+
+
+/**
+ * starsky
+ *
+ * test100/test100
+ * 
+ * test12138/test12138
+ * 
+ */

@@ -12,8 +12,8 @@
       cancel-title="取消"
     >
       <form ref="form" @submit.stop.prevent="handleSubmit">
-        <b-form-group label="用户名:">
-          <b-form-input v-model="form.account" placeholder="请输入用户名" :state="usernameState"></b-form-input>
+        <b-form-group label="账号:">
+          <b-form-input v-model="form.account" placeholder="请输入账号" :state="usernameState"></b-form-input>
         </b-form-group>
 
         <b-form-group label="密码:">
@@ -73,9 +73,8 @@ export default {
         return;
       }
       this.$store.dispatch("user/login", this.form).then(res => {
-        //todo handle response
         this.$message({ type: "success", text: "登录成功" });
-        this.$router.push({ path: "/" }).catch(_=>{})
+        this.$router.push({path:'/home'}).catch(_=>{})
       });
 
       // Hide the modal manually

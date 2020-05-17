@@ -3,7 +3,7 @@ import { getToken, setToken, removeToken } from '@/utils/auth'
 
 
 const state = {
-    token: '',
+    token: getToken(),
     name: '',
     sex: '',
     email: '',
@@ -32,19 +32,24 @@ const actions = {
 
     login({ commit }, userInfo) {
         return new Promise((resolve, reject) => {
-            // todo api request
-            setToken('hello world');
-            commit('SET_ISLOGIN', true);
-            resolve();
+            login(userInfo).then((res) => {
+                const { data, message } = res;
+                setToken(data.token);
+                commit('SET_ISLOGIN', true);
+                commit('SET_TOKEN', data.token);
+                resolve(message);
+            }).catch(_ => { reject() });
         })
     },
 
-    getInfo({ commit }, loginState = true) {
+    getInfo({ commit, state }, loginState = true) {
         return new Promise((resolve, reject) => {
-            // todo api request
-            commit('SET_NAME', '张三');
-            commit('SET_ISLOGIN', loginState);
-            resolve();
+            getInfo(state.token).then((res) => {
+                const { data } = res;
+                commit('SET_NAME', data.username);
+                commit('SET_ISLOGIN', loginState);
+                resolve();
+            }).catch(_ => { reject() })
         })
     },
 
