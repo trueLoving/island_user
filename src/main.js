@@ -26,6 +26,14 @@ import 'vxe-table/lib/index.css'
 Vue.use(VXETable)
 
 
+import * as filters from "./utils/index.js";
+
+Object.keys(filters).forEach(key => {
+  Vue.filter(key, filters[key])
+})
+
+
+
 Vue.config.productionTip = false
 
 new Vue({

@@ -2,10 +2,14 @@
   <div class="chapter-container">
     <div class="chapter-title">
       <div class="chapter-title-inner">
-        <h4>章节标题</h4>
+        {{name}}
       </div>
     </div>
-    <div class="chapter-content">章节内容</div>
+    <div class="chapter-content">
+      <div>创建时间:{{created_at | parseTime}}</div>
+    <div>更新时间:{{updated_at | parseTime}}</div>
+    <div>题目总数:{{exercise_num}}</div>
+    </div>
     <div class="chapter-button">
       <b-button variant="success" @click="start">开始刷题</b-button>
     </div>
@@ -15,6 +19,24 @@
 <script>
 export default {
     name:'ChapterCard',
+    props:{
+      name:{
+        type:String,
+        default:''
+      },
+      created_at:{
+        type:String,
+        default:''
+      },
+      updated_at:{
+        type:String,
+        default:''
+      },
+      exercise_num:{
+        type:Number,
+        default:0
+      }
+    },
     data(){
       return{
 
@@ -44,10 +66,13 @@ export default {
   position: relative;
 }
 .chapter-title-inner {
-  position: absolute;
-  top: 50%;
+  /* position: absolute; */
+  /* top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
+  font-size: 16px;
+  font-weight: 400;
+  font-family:sans-serif;
 }
 .chapter-content {
   height: 50%;

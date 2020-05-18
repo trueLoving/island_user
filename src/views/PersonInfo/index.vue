@@ -42,9 +42,9 @@ export default {
       submit(evt) {
         evt.preventDefault()
         modifyPersonInfo(this.user).then((res)=>{
-          console.log(res);
           this.$message({type:'success',text:'修改成功'});
-          this.reload();
+          // this.reload();
+          window.location.reload();
         })
       },
       reset(evt) {

@@ -6,18 +6,20 @@
       <b-button variant="success" class="next-button">下一题</b-button>
       <b-button variant="success" class="pre-button">上一题</b-button>
     </div> -->
-    <ChoiceQuestion />
   </div>
 </template>
 
 <script>
 
+import JudgeQuestion from "./components/JudgeQuestion";
 import ChoiceQuestion from './components/ChoiceQuestion'
+
 
 export default {
     name:'ProblemDetail',
     components:{
-      ChoiceQuestion
+      ChoiceQuestion,
+      JudgeQuestion
     },
     data(){
         return{

@@ -1,18 +1,14 @@
 <template>
   <div>
     <div class="table-container">
-      <vxe-table
-        align="center"
-        :data="list"
-        style="font-size:16px;"
-        :loading="loading"
-        height="600"
-      >
-        <vxe-table-column field="id" title="序号"></vxe-table-column>
+      <vxe-table align="center" :data="list" style="font-size:16px;" height="600">
+        <vxe-table-column title="序号" type="seq" :seq-method="seqMethod"></vxe-table-column>
         <vxe-table-column field="name" title="题库名称"></vxe-table-column>
         <vxe-table-column field="tagName" title="标签"></vxe-table-column>
         <vxe-table-column field="username" title="创建者"></vxe-table-column>
-        <vxe-table-column field="updated_at" title="更新时间"></vxe-table-column>
+        <vxe-table-column field="updated_at" title="更新时间">
+          <template v-slot="{row}">{{row.updated_at | parseTime }}</template>
+        </vxe-table-column>
         <vxe-table-column title="操作">
           <template v-slot="{row}">
             <b-button variant="success" size="sm" @click="handleClick(row)">进入题库</b-button>
@@ -23,7 +19,6 @@
       <br />
 
       <vxe-pager
-        :loading="loading"
         :current-page="listQuery.currentPage"
         :page-size="listQuery.pageSize"
         :total="listQuery.totalResult"
@@ -36,12 +31,12 @@
 <script>
 
 import * as api from "@/api/library.js";
+import { parseTime } from "@/utils/index.js";
 
 export default { 
   data () {
     return {
       list: [],
-      loading: false,
       listQuery: {
         currentPage: 1,
         pageSize: 20,
@@ -49,22 +44,27 @@ export default {
       }
     }
   },
+  filters:{
+    parseTime
+  },
   methods:{
-    handlePageChange(){
-
+    handlePageChange({pageSize,currentPage}){
+      this.listQuery.currentPage = currentPage;
+      this.listQuery.pageSize = pageSize;
     },
     handleClick(library){
       // console.log(library);
-      this.$router.push({path:'/chapterArea'});
+      this.$router.push({path:'/chapterArea',query:{id:library.id}});
     },
     getList(){
-      api.getLibraries({
-        currentPage:1
-      }).then((res)=>{
-
-        this.list = res.data;
-        this.listQuery.totalResult = res.data.length;
+      api.getLibraries(this.listQuery).then((res)=>{
+        this.list = res.data.rows;
+        this.listQuery.totalResult = res.data.count;
       })
+    },
+    seqMethod({rowIndex}){
+      const {currentPage,pageSize} = this.listQuery;
+      return (currentPage-1)*pageSize+rowIndex+1;
     }
   },
   mounted(){
