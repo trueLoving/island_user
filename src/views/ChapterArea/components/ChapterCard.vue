@@ -1,14 +1,12 @@
 <template>
   <div class="chapter-container">
     <div class="chapter-title">
-      <div class="chapter-title-inner">
-        {{name}}
-      </div>
+      <div class="chapter-title-inner">{{name}}</div>
     </div>
     <div class="chapter-content">
-      <div>创建时间:{{created_at | parseTime}}</div>
-    <div>更新时间:{{updated_at | parseTime}}</div>
-    <div>题目总数:{{exercise_num}}</div>
+      <div>创建时间: {{created_at | parseTime}}</div>
+      <div>更新时间: {{updated_at | parseTime}}</div>
+      <div>题目总数: {{exercise_num}}</div>
     </div>
     <div class="chapter-button">
       <b-button variant="success" @click="start">开始刷题</b-button>
@@ -20,6 +18,12 @@
 export default {
     name:'ChapterCard',
     props:{
+      id:{
+        props:{
+          type:Number,
+          required:true
+        }
+      },
       name:{
         type:String,
         default:''
@@ -37,14 +41,9 @@ export default {
         default:0
       }
     },
-    data(){
-      return{
-
-      }
-    },
     methods:{
       start(){
-        this.$router.push({path:'/answerArea'})
+        this.$router.push({path:'/answerArea',query:{id:this.id}});
       }
     }
 }
@@ -72,7 +71,7 @@ export default {
   transform: translate(-50%, -50%); */
   font-size: 16px;
   font-weight: 400;
-  font-family:sans-serif;
+  font-family: sans-serif;
 }
 .chapter-content {
   height: 50%;

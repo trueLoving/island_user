@@ -1,11 +1,17 @@
 <template>
   <div class="chapter-area-container">
-    <ChapterCard v-for="(item,index) in chapters" 
-      :key="index" 
-      :name="item.name" 
-      :exercise_num="item.exercise_num"  
-      :created_at="item.created_at" 
-      :updated_at="item.updated_at"/>
+    <div id="tip">
+      <h2>暂无内容</h2>
+    </div>
+    <ChapterCard
+      v-for="(item,index) in chapters"
+      :key="index"
+      :id="item.id"
+      :name="item.name"
+      :exercise_num="item.exercise_num"
+      :created_at="item.created_at"
+      :updated_at="item.updated_at"
+    />
   </div>
 </template>
 
@@ -29,6 +35,8 @@ export default {
       const { id } = this.$route.query;
       api.getChapters(id).then((res)=>{
         this.chapters = res.data;
+        const tip = document.getElementById('tip');
+        this.chapters.length==0?tip.style.display='block':'';
       })
     }
 }
@@ -40,5 +48,14 @@ export default {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+}
+#tip{
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  color: rgba(0, 0, 0, 0.49);
+  font-size: 45px;
 }
 </style>
