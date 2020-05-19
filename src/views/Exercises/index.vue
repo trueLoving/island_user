@@ -25,13 +25,13 @@
         :layouts="['PrevPage', 'JumpNumber', 'NextPage', 'FullJump', 'Sizes', 'Total']"
         @page-change="handlePageChange"
       ></vxe-pager>
+      
     </div>
   </div>
 </template>
 <script>
 
 import * as api from "@/api/library.js";
-import { parseTime } from "@/utils/index.js";
 
 export default { 
   data () {
@@ -43,9 +43,6 @@ export default {
         totalResult: 0
       }
     }
-  },
-  filters:{
-    parseTime
   },
   methods:{
     handlePageChange({pageSize,currentPage}){

@@ -10,7 +10,12 @@
       />
     </div>
     <div class="pagination-container">
-      <vxe-pager :current-page="listQuery.currentPage" :page-size="listQuery.pageSize" :total="listQuery.totalResult" :layouts="['PrevPage', 'JumpNumber', 'NextPage']" @page-change="handlePageChange"></vxe-pager>
+      <vxe-pager 
+      :current-page="listQuery.currentPage" 
+      :page-size="listQuery.pageSize" 
+      :total="listQuery.totalResult" 
+      :layouts="['PrevPage', 'JumpNumber', 'NextPage']" 
+      @page-change="handlePageChange"></vxe-pager>
     </div>
   </div>
 </template>
@@ -28,9 +33,9 @@ export default {
       listQuery: {
         chapter: '',
         currentPage: 1,
-        pageSize: 20,
+        pageSize: 10,
         type: "",
-        totalResult: 1000
+        totalResult: 0
       },
       list: []
     }
@@ -42,6 +47,7 @@ export default {
     }) {
       this.listQuery.pageSize = pageSize;
       this.listQuery.currentPage = currentPage;
+      this.getList();
     },
     getList() {
       api.getProblems(this.listQuery).then((res) => {
