@@ -22,7 +22,7 @@
         :current-page="listQuery.currentPage"
         :page-size="listQuery.pageSize"
         :total="listQuery.totalResult"
-        :layouts="['PrevPage', 'JumpNumber', 'NextPage', 'FullJump', 'Sizes', 'Total']"
+        :layouts="['PrevPage', 'JumpNumber', 'NextPage', 'FullJump',  'Total']"
         @page-change="handlePageChange"
       ></vxe-pager>
       
@@ -48,6 +48,7 @@ export default {
     handlePageChange({pageSize,currentPage}){
       this.listQuery.currentPage = currentPage;
       this.listQuery.pageSize = pageSize;
+      this.getList();
     },
     handleClick(library){
       // console.log(library);

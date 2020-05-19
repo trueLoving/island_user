@@ -57,8 +57,8 @@ export default {
 <style scoped>
 .problem-detail-container {
   float: right;
-  width: 60vw;
-  margin: 50px 40px 0;
+  width: 70vw;
+  margin: 50px 30px 0;
   box-shadow: 10px 10px 10px 10px gray;
   padding: 20px;
   border-radius: 6px;

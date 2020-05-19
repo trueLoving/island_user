@@ -64,26 +64,26 @@ export default {
 </script>
 
 <style scoped>
-  .problem-list-container {
-    float: left;
-    width: 26vw;
-    margin: 50px 60px 0;
-    box-shadow: 10px 10px 10px 10px gray;
-    padding: 20px;
-    border-radius: 6px;
-    height: 820px;
-    background: #fff;
-    overflow: hidden;
-    position: relative;
-  }
-  .problem-container {
-    height: 640px;
-    overflow: auto;
-  }
-  .pagination-container {
-    margin: 20px 0;
-    text-align: center;
-    position: absolute;
-    bottom: 0;
-  }
+.problem-list-container {
+  float: left;
+  width: 23vw;
+  margin: 50px 30px 0;
+  box-shadow: 10px 10px 10px 10px gray;
+  padding: 20px;
+  border-radius: 6px;
+  height: 820px;
+  background: #fff;
+  overflow: hidden;
+  position: relative;
+}
+.problem-container {
+  height: 640px;
+  overflow: auto;
+}
+.pagination-container {
+  margin: 20px 0;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+}
 </style>

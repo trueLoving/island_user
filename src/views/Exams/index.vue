@@ -19,7 +19,7 @@
       :current-page="listQuery.currentPage"
       :page-size="listQuery.pageSize"
       :total="listQuery.totalResult"
-      :layouts="['PrevPage', 'JumpNumber', 'NextPage', 'FullJump', 'Sizes', 'Total']"
+      :layouts="['PrevPage', 'JumpNumber', 'NextPage', 'FullJump', 'Total']"
       @page-change="handlePageChange"
     ></vxe-pager>
   </div>
