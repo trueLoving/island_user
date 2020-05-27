@@ -17,7 +17,7 @@
         </b-form-group>
 
         <b-form-group label="密码:">
-          <b-form-input v-model="form.password" placeholder="请输入密码" :state="passwordState"></b-form-input>
+          <b-form-input v-model="form.password" placeholder="请输入密码" :state="passwordState" type="password"></b-form-input>
         </b-form-group>
       </form>
     </b-modal>
