@@ -7,7 +7,8 @@
         <b-navbar-nav v-if="isLogin">
           <b-nav-item to="/home" :active="activeStatus[0]">主页</b-nav-item>
           <b-nav-item to="/exams" :active="activeStatus[1]">考试</b-nav-item>
-          <b-nav-item to="/Exercises" :active="activeStatus[2]">刷题</b-nav-item>
+          <b-nav-item to="/exercises" :active="activeStatus[2]">刷题</b-nav-item>
+          <b-nav-item to="/registeredForExamination" :active="activeStatus[3]">已报名的考试</b-nav-item>
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto">
           <b-nav-item-dropdown right>
@@ -60,7 +61,7 @@ export default {
   },
   data() {
     return {
-      activeStatus: [true, false, false]
+      activeStatus: [true, false, false,false]
     };
   },
   watch: {
@@ -76,7 +77,6 @@ export default {
   },
   methods: {
     logout() {
-      // todo 
       this.$store.dispatch("user/logout").then(res => {
         this.$message({type:'success',text:'退出成功'})
         this.$router.push({ path: "/" }).catch(_=>{})

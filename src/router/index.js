@@ -39,6 +39,14 @@ const routes = [
         component: () => import('@/views/Exercises/index.vue')
       },
       {
+        path: '/registeredForExamination',
+        name: 'RegisteredForExamination',
+        meta: {
+          i: 3
+        },
+        component: () => import('@/views/RegisteredForExamination/index.vue')
+      },
+      {
         path: '/personCenter',
         name: 'PersonCenter',
         redirect: '/personCenter/personInfo',
@@ -56,6 +64,11 @@ const routes = [
         component: () => import('@/views/AnswerArea/index.vue')
       }
     ]
+  },
+  {
+    path:'*',
+    name:'404',
+    component:()=>import('@/views/404.vue')
   }
 ]
 
