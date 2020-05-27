@@ -4,6 +4,7 @@ import { getToken, setToken, removeToken } from '@/utils/auth'
 
 const state = {
     token: getToken(),
+    user_id:'',
     name: '',
     sex: '',
     email: '',
@@ -13,6 +14,9 @@ const state = {
 const mutations = {
     SET_TOKEN: (state, token) => {
         state.token = token;
+    },
+    SET_USER_ID:(state,user_id)=>{
+        state.user_id = user_id;
     },
     SET_NAME: (state, name) => {
         state.name = name;
@@ -46,6 +50,7 @@ const actions = {
         return new Promise((resolve, reject) => {
             getInfo().then((res) => {
                 const { data } = res;
+                commit('SET_USER_ID',data.id)
                 commit('SET_NAME', data.username);
                 commit('SET_ISLOGIN', loginState);
                 resolve();

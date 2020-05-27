@@ -62,6 +62,11 @@ const routes = [
         path: '/answerArea',
         name: 'AnswerArea',
         component: () => import('@/views/AnswerArea/index.vue')
+      },
+      {
+        path: '/examList',
+        name: 'ExamList',
+        component: () => import('@/views/ExamList/index.vue')
       }
     ]
   },
