@@ -67,7 +67,12 @@ const routes = [
         path: '/examList',
         name: 'ExamList',
         component: () => import('@/views/ExamList/index.vue')
-      }
+      },
+      {
+        path: '/formalExamination',
+        name: 'FormalExamination',
+        component: () => import('@/views/FormalExamination/index.vue')
+      },
     ]
   },
   {

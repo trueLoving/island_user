@@ -2,30 +2,20 @@
   <div>
     <div class="table-container">
       <vxe-table align="center" :data="list" style="font-size:16px;" height="600">
-        <vxe-table-column title="序号" type="seq" :seq-method="seqMethod"></vxe-table-column>
+        <vxe-table-column title="序号" type="seq"></vxe-table-column>
         <vxe-table-column field="name" title="题库名称"></vxe-table-column>
-        <vxe-table-column field="tagName" title="标签"></vxe-table-column>
-        <vxe-table-column field="username" title="创建者"></vxe-table-column>
-        <vxe-table-column field="updated_at" title="更新时间">
-          <template v-slot="{row}">{{row.updated_at | parseTime }}</template>
+        <vxe-table-column field="start" title="开始时间">
+          <template v-slot="{row}">{{row.start | parseTime }}</template>
+        </vxe-table-column>
+        <vxe-table-column field="end" title="结束时间">
+          <template v-slot="{row}">{{row.end | parseTime }}</template>
         </vxe-table-column>
         <vxe-table-column title="操作">
           <template v-slot="{row}">
-            <b-button variant="success" size="sm" @click="handleClick(row)">开始考试</b-button>
+            <b-button variant="success" size="sm" @click="handleStart(row)">开始考试</b-button>
           </template>
         </vxe-table-column>
       </vxe-table>
-
-      <br />
-
-      <vxe-pager
-        :current-page="listQuery.currentPage"
-        :page-size="listQuery.pageSize"
-        :total="listQuery.totalResult"
-        :layouts="['PrevPage', 'JumpNumber', 'NextPage', 'FullJump',  'Total']"
-        @page-change="handlePageChange"
-      ></vxe-pager>
-      
     </div>
   </div>
 </template>
@@ -36,35 +26,26 @@ import * as api from "@/api/exams.js";
 export default { 
   data () {
     return {
-      list: [],
-      listQuery: {
-        currentPage: 1,
-        pageSize: 20,
-        totalResult: 0
-      }
+      list: []
     }
   },
   methods:{
-    handlePageChange({pageSize,currentPage}){
-      this.listQuery.currentPage = currentPage;
-      this.listQuery.pageSize = pageSize;
-      this.getList();
-    },
-    handleClick(library){
-      // console.log(library);
-      // this.$router.push({path:'/chapterArea',query:{id:library.id}});
-    },
     getList(){
-
       api.getEnrolledExams(this.listQuery).then((res)=>{
-        console.log(res);
-        this.list = res.data.rows;
-        this.listQuery.totalResult = res.data.count;
+        this.list = res.data;
       })
     },
-    seqMethod({rowIndex}){
-      const {currentPage,pageSize} = this.listQuery;
-      return (currentPage-1)*pageSize+rowIndex+1;
+    handleStart(exam){
+
+      const {id,start,end} = exam;
+
+      api.startExams(id).then(res=>{
+        this.$message({type:'success',text:'请开始考试'})
+        this.$router.push({path:`FormalExamination?exam_id=${exam.id}&start=${start}&end=${end}`})
+      })
+
+      // this.$router.push({path:`FormalExamination?exam_id=${exam.id}`})
+
     }
   },
   mounted(){

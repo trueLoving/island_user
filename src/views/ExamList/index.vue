@@ -15,9 +15,10 @@
       <vxe-table-column field="end" title="考试结束时间">
         <template v-slot="{row}">{{row.end | parseTime }}</template>
       </vxe-table-column>
-      <vxe-table-column title="操作">
+      <vxe-table-column title="其他">
         <template v-slot="{row}">
-          <b-button variant="success" size="sm" @click="handleClick(row)">报名考试</b-button>
+          <b-button variant="success" size="sm" @click="handleEnroll(row)" v-if="row.status===0&&row.has===0">报名考试</b-button>
+          <span v-else>{{ row | statusFilter }}</span>
         </template>
       </vxe-table-column>
     </vxe-table>
@@ -40,15 +41,31 @@ export default {
         exams:[]
       }
     },
+    filters:{
+      statusFilter(exam){
+        const {status,has} = exam;
+        const statusObject = {
+          0:'报名中',
+          1:'已开始',
+          2:'批改中',
+          3:'已结束'
+        }
+        if(has===1){
+          return '已报名'
+        }
+        return statusObject[status];
+      }
+    },
     methods:{
       getList(){
         api.getExams(this.library_id).then((res)=>{
+          console.log(res);
           this.exams = res.data
         }).catch((err)=>{
           this.$message({type:'error',text:err.message})
         })
       },
-      handleClick(exam){
+      handleEnroll(exam){
 
         const {start,end,id:exam_id} = exam;
 
@@ -63,6 +80,7 @@ export default {
           this.$message({type:'success',text:'报名成功'});
           this.reload();
         })
+
 
       }
     },
