@@ -29,7 +29,7 @@ service.interceptors.response.use(
   (error) => {
     const errorMsg = error.response.data.message.toString();
     Message.show({ type: 'error', text: errorMsg || error.toString() });
-    Promise.reject(error)
+    return Promise.reject(error)
   }
 )
 

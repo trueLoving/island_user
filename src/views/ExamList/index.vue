@@ -27,11 +27,15 @@
 <script>
 
 import * as api from "@/api/exams.js";
+import { parseTime } from "@/utils/index.js";
+
 
 export default {
     name:'ExamList',
+    inject:['reload'],
     data(){
       return{
+        user_id:"",
         library_id:"",
         exams:[]
       }
@@ -45,13 +49,26 @@ export default {
         })
       },
       handleClick(exam){
-        const {start,end,exam_id} = exam;
 
-        console.log(exam);
+        const {start,end,id:exam_id} = exam;
+
+        const data = {
+          start:parseTime(start),
+          end:parseTime(end),
+          exam_id,
+          user_id:this.user_id
+        }
+
+        api.enrollExams(data).then((res)=>{
+          this.$message({type:'success',text:'报名成功'});
+          this.reload();
+        })
+
       }
     },
     mounted(){
       this.library_id = this.$route.query.id;
+      this.user_id = this.$store.getters.user_id;
       this.getList();
     }
 }
