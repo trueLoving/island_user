@@ -10,14 +10,14 @@
           <b-button variant="success" size="sm" @click="prev" style="margin:0 20px">上一题</b-button>
           <b-button variant="success" size="sm" @click="next" style="margin:0 20px">下一题</b-button>
         </div>
-        <component v-bind:is="component" ref="component"></component>
+        <component v-bind:is="component" ref="component" @store="store"></component>
       </div>
     </transition>
   </div>
 </template>
 
 <script>
-import { startExams } from "@/api/exams.js";
+import { startExams,submitExam } from "@/api/exams.js";
 
 import SingleChoiceQuestion from "./components/SingleChoiceQuestion";
 import JudgeQuestion from "./components/JudgeQuestion";
@@ -33,6 +33,7 @@ function typeFilter(t){
   }
   return types[t];
 }
+
 
 export default {
     name:'FormalExamination',
@@ -54,14 +55,25 @@ export default {
       Timer
     },
     methods:{ 
+      findRecord(item){
+
+        let result = {};
+        this.record.forEach(r=>{
+          if(r.id===item.id){
+            result  = r;
+          }
+        })
+        return result;
+
+      },
       change(step){
         
         this.currentIndex += step;
         this.title = `第${this.currentIndex}题`
         
         const item = this.rows[this.currentIndex-1];
-        const record = this.record[this.currentIndex-1];
-        
+        const record = this.findRecord(item);
+
         // 保存用户答案
         // 切换题目界面
         this.component = typeFilter(item.type);
@@ -89,62 +101,36 @@ export default {
         this.change(0);
       },
       getList(){
-        // startExams(this.exam_id).then((res)=>{
-        //   console.log(res);
-        // })
-        const data ={
-          "rows": [
-              {
-                  "id": 2,
-                  "content": "Java 是什么？ A 最好的语言 B 最差的语言 C 是咖啡",
-                  "type": 1
-              },
-              {
-                  "id": 3,
-                  "content": "Python比Java好吗？ A Java好 B Python最差 C PHP天下第一",
-                  "type": 2
-              },
-              {
-                  "id": 4,
-                  "content": "想在电脑中运行Java需要什么？ A JVM B JRE C 信仰",
-                  "type": 2
-              }
-            ],
-          "count": 3,
-          "record": [
-              {
-                  "id": 2,
-                  "user_answer": "A"
-              },
-              {
-                  "id": 3,
-                  "user_answer": "AB"
-              },
-              {
-                  "id": 4,
-                  "user_answer": "A"
-              }
-          ]
-        }
-        this.rows = data.rows;
-        this.record = data.record;
-        this.count = data.count;
+        startExams(this.exam_id).then((res)=>{
+          console.log(res);
+          this.rows = res.data.rows;
+          this.record = res.data.record;
+          this.count = res.data.count;
+          this.init();
+        })  
       },
       submit(){
         // todo 请求后端
-        this.$message({type:'success',text:'提交成功'});
+        submitExam(this.exam_id).then(res=>{
+          this.$message({type:'success',text:'提交成功'});
+          this.$router.push({path:'/registeredForExamination'});
+        })
+        // this.$message({type:'success',text:'提交成功'});
+        // this.$router.push({path:'/registeredForExamination'});
       },
       handleOver(){
         this.$message({type:'info',text:'考试时间已经结束,将会自动交卷'});
         this.submit();
-        this.$router.push('/');
+      },
+      store(record){
+        const index = this.record.findIndex(r=>r.id===record.id);
+        index?this.record[index] = record:this.record.push(record);
       }
     },
     mounted(){
       this.exam_id = this.$route.query.exam_id;
       this.getList();
       this.$refs.timer.init(this.$route.query.start,this.$route.query.end);
-      this.init();
     }
 }
 </script>

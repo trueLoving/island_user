@@ -50,10 +50,12 @@ export default {
           2:'批改中',
           3:'已结束'
         }
-        if(has===1){
-          return '已报名'
+        if(status===0&&has===1){
+          return '已报名' 
         }
+
         return statusObject[status];
+        
       }
     },
     methods:{

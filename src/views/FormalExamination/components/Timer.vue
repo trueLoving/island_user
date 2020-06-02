@@ -31,26 +31,28 @@ export default {
         }
     },
     methods:{
+
         init(start,end){
 
-            const t = (new Date(end) - new Date(start))/1000;
+            const t = Math.floor((new Date(end).getTime() - new Date().getTime())/1000);
 
-            const hour = Math.ceil(t/3600);
-            const minute = Math.ceil((t-3600*hour)/60);
+
+            const hour = Math.floor(t/3600);
+            const minute = Math.floor((t-3600*hour)/60);
             const second = t-hour*3600-60*minute;
-            
+
             this.time.hour = hour;
             this.time.minute = minute;
             this.time.second = second;
 
             this.interval = setInterval(()=>{
-                this.time.reduceOneSecond()
+                this.time.reduceOneSecond();
             },1000);
 
 
             this.timer = setTimeout(()=>{
                 this.$emit('handleOver');
-            },(new Date(end) - new Date(start)))
+            },(new Date(end) - new Date()))
 
         }
     },

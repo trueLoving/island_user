@@ -29,14 +29,17 @@ export function startExams(data) {
     })
 }
 
-export function storeAnswer(data){
+export function storeAnswer(data) {
     return request({
-
+        url: '/record/preserve',
+        method: 'post',
+        data
     })
 }
 
-export function submitExams(data){
+export function submitExam(data) {
     return request({
-        
+        url: `/record/submit/${data}`,
+        method: 'get'
     })
 }

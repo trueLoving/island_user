@@ -10,9 +10,15 @@
         <vxe-table-column field="end" title="结束时间">
           <template v-slot="{row}">{{row.end | parseTime }}</template>
         </vxe-table-column>
-        <vxe-table-column title="操作">
+        <vxe-table-column title="其他">
           <template v-slot="{row}">
-            <b-button variant="success" size="sm" @click="handleStart(row)">开始考试</b-button>
+            <b-button
+              variant="success"
+              size="sm"
+              @click="handleStart(row)"
+              v-if="row.status===1&&row.hasSubmit===0"
+            >开始考试</b-button>
+            <span v-else>{{ row | statusFilter }}</span>
           </template>
         </vxe-table-column>
       </vxe-table>
@@ -29,9 +35,25 @@ export default {
       list: []
     }
   },
+  filters:{
+    statusFilter(exam){
+      const {status,hasSubmit} = exam;
+      const statusObject = {
+        0:'报名中',
+        1:'已开始',
+        2:'批改中',
+        3:'已结束'
+      }
+      if(status===1&&hasSubmit===1){
+        return '已提交';
+      }
+      return statusObject[status];
+    }
+  },
   methods:{
     getList(){
-      api.getEnrolledExams(this.listQuery).then((res)=>{
+      api.getEnrolledExams().then((res)=>{
+        console.log(res);
         this.list = res.data;
       })
     },
@@ -43,8 +65,6 @@ export default {
         this.$message({type:'success',text:'请开始考试'})
         this.$router.push({path:`FormalExamination?exam_id=${exam.id}&start=${start}&end=${end}`})
       })
-
-      // this.$router.push({path:`FormalExamination?exam_id=${exam.id}`})
 
     }
   },
