@@ -48,15 +48,3 @@ export function changePwd(data) {
         data
     })
 }
-
-/**
- *
- * 用户测试数据
- *
- * starsky
- *
- * test100/test100
- *
- * test12138/test12138
- *
- */

@@ -9,7 +9,7 @@
         <b-form-group id="input-group-2" label="用户性别:">
           <b-form-radio-group v-model="user.sex">
             <b-form-radio value="1">男</b-form-radio>
-            <b-form-radio value="0">女</b-form-radio>
+            <b-form-radio value="2">女</b-form-radio>
           </b-form-radio-group>
         </b-form-group>
 

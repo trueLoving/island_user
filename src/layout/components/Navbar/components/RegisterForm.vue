@@ -31,12 +31,12 @@
         </b-form-group>
 
         <b-form-group label="密码:">
-          <b-form-input v-model="form.password1" placeholder="请输入密码"></b-form-input>
+          <b-form-input v-model="form.password1" placeholder="请输入密码" type="password"></b-form-input>
           <b-form-invalid-feedback :state="errMsg.password1==''">{{errMsg.password1}}</b-form-invalid-feedback>
         </b-form-group>
 
         <b-form-group label="确认密码:">
-          <b-form-input v-model="form.password2" placeholder="请再次输入密码"></b-form-input>
+          <b-form-input v-model="form.password2" placeholder="请再次输入密码" type="password"></b-form-input>
           <b-form-invalid-feedback :state="errMsg.password2==''">{{errMsg.password2}}</b-form-invalid-feedback>
         </b-form-group>
 
