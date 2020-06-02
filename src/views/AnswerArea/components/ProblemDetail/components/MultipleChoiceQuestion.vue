@@ -1,6 +1,6 @@
 <template>
   <div class="choice-question-container">
-    <p>{{item.content}}</p>
+    <div v-html="item.content"></div>
     <b-form-group>
       <b-form-checkbox-group v-model="answers">
         <b-form-checkbox value="A">A</b-form-checkbox>

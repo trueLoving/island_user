@@ -1,6 +1,6 @@
 <template>
   <div class="choice-question-container">
-    <p>{{item.content}}</p>
+    <div v-html="item.content"></div>
     <b-form-radio-group v-model="answer">
       <b-form-radio value="A">A</b-form-radio>
       <b-form-radio value="B">B</b-form-radio>

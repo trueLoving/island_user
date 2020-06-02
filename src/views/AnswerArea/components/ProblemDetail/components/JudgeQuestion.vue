@@ -1,6 +1,6 @@
 <template>
   <div class="judge-question-container">
-    <p>{{item.content}}</p>
+    <div v-html="item.content"></div>
     <b-form-radio-group v-model="answer">
       <b-form-radio value="正确">T</b-form-radio>
       <b-form-radio value="错误">F</b-form-radio>
