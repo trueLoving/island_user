@@ -10,6 +10,9 @@
         <vxe-table-column field="end" title="结束时间">
           <template v-slot="{row}">{{row.end | parseTime }}</template>
         </vxe-table-column>
+         <vxe-table-column field="grade" title="成绩" >
+          <template v-slot="{row}">{{row.grade===0?'暂无成绩':row.grade  }}</template>
+        </vxe-table-column>
         <vxe-table-column title="其他">
           <template v-slot="{row}">
             <b-button
