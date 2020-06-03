@@ -43,8 +43,8 @@ export function modifyPersonInfo(data) {
 
 export function changePwd(data) {
     return request({
-        url: '',
-        method: '',
+        url: '/user/reset',
+        method: 'post',
         data
     })
 }

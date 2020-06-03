@@ -35,8 +35,12 @@
 </template>
 
 <script>
+
+
+import { changePwd } from "@/api/user.js";
+
 export default {
-  name: "LoginForm",
+  name: "ChangePwd",
   inject: ["reload"],
   data() {
     return {
@@ -88,7 +92,12 @@ export default {
       if (!this.checkFormValidity()) {
         return;
       }
-    
+
+      changePwd(this.form).then((res)=>{
+        this.$message({type:'success',text:'修改成功'});
+        this.reload();
+      })
+
       // todo 密码修改
 
       // Hide the modal manually
